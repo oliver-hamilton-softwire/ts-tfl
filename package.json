@@ -1,12 +1,15 @@
 {
-  "name": "${PROJECT_NAME}",
+  "name": "ts-tfl",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc"
   },
-  "dependencies": {},
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "readline-sync": "^1.4.10"
+  },
   "devDependencies": {
     "typescript": "^5.5.3"
   },
