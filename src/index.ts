@@ -4,8 +4,7 @@ const APP_KEY: string = 'e92dcffed66741b09040d3ff8bdc58c7';
 const NUMBER_OF_STOPS: number = 2;
 const BUSES_PER_STOP: number = 5;
 
-const getPostcodeData = async () => {
-    const postcode = readlineSync.question('Enter postcode: ');
+const getPostcodeData = async (postcode: string) => {
     const postcodeResponse = await fetch(`https://api.postcodes.io/postcodes/${postcode}`);
     return await postcodeResponse.json();
 }
@@ -25,7 +24,8 @@ const getNextBuses = async (stopId: number) => {
 
 const fetchData = async () => {
     try {
-        const postcodeJson = await getPostcodeData();
+        const postcode: string = readlineSync.question('Enter postcode: ');
+        const postcodeJson = await getPostcodeData(postcode);
         const stops = await getNearestStops(postcodeJson.result.latitude, postcodeJson.result.longitude);
 
         for (const stop of stops) {
