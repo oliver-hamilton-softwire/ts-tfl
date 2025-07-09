@@ -1,4 +1,4 @@
-var readlineSync = require('readline-sync');
+let readlineSync = require('readline-sync');
 
 const APP_KEY: string = 'e92dcffed66741b09040d3ff8bdc58c7';
 const NUMBER_OF_STOPS: number = 2;
