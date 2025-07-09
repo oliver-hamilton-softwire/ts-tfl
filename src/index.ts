@@ -14,7 +14,6 @@ const getPostcodeData = async () => {
 const getNearestStops = async (lat: number, long: number) => {
     const stopsResponse = await fetch(`https://api.tfl.gov.uk/StopPoint/?lat=${lat}&lon=${long}&stopTypes=NaptanPublicBusCoachTram&app_key=${APP_KEY}`);
     const stopsJson = await stopsResponse.json();
-    // console.log(stopsJson);
     // Get the top stops
     return stopsJson.stopPoints.slice(0, NUMBER_OF_STOPS);
 }
@@ -32,7 +31,7 @@ const fetchData = async () => {
         const stops = await getNearestStops(postcodeJson.result.latitude, postcodeJson.result.longitude);
 
         for (const stop of stops) {
-            console.log(`Buses at ${stop.commonName}:`);
+            console.log(`Buses at ${stop.commonName} (${Math.round(stop.distance)} metres away):`);
             const nextBuses = await getNextBuses(stop.naptanId);
 
             for (const busJson of nextBuses.slice(0, BUSES_PER_STOP)) {
