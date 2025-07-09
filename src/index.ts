@@ -15,7 +15,7 @@ const getNearestStops = async (lat: number, long: number) => {
     return stopsJson.stopPoints.slice(0, NUMBER_OF_STOPS);
 }
 
-const getNextBuses = async (stopId: number) => {
+const getUpcomingBuses = async (stopId: number) => {
     const nextBusesResponse = await fetch(`https://api.tfl.gov.uk/StopPoint/${stopId}/Arrivals?app_key=${APP_KEY}`);
     const nextBusesJson = await nextBusesResponse.json();
     nextBusesJson.sort((a: any, b: any) => new Date(a.expectedArrival).getTime() - new Date(b.expectedArrival).getTime());
@@ -30,7 +30,7 @@ const fetchData = async () => {
 
         for (const stop of stops) {
             console.log(`Buses at ${stop.commonName} (${Math.round(stop.distance)} metres away):`);
-            const nextBuses = await getNextBuses(stop.naptanId);
+            const nextBuses = await getUpcomingBuses(stop.naptanId);
 
             for (const busJson of nextBuses.slice(0, BUSES_PER_STOP)) {
                 const busDate: Date = new Date(busJson.expectedArrival);
