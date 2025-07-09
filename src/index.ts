@@ -21,7 +21,7 @@ const fetchData = async () => {
             const nextBusesJson = await nextBusesResponse.json();
             nextBusesJson.sort((a: any, b: any) => new Date(a.expectedArrival) - new Date(b.expectedArrival))
 
-            for (const busJson of nextBusesJson) {
+            for (const busJson of nextBusesJson.slice(0, 5)) {
                 const busDate: Date = new Date(busJson.expectedArrival);
                 // const busTime: string = `${busDate.getHours()}:${busDate.getMinutes()}:${busDate.getSeconds()}`;
                 console.log(`Line ${busJson.lineId} towards ${busJson.towards} expected at ${busDate.toTimeString().slice(0,8)}`);
