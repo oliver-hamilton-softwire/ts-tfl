@@ -1,8 +1,8 @@
 var readlineSync = require('readline-sync');
 
-const APP_KEY = 'e92dcffed66741b09040d3ff8bdc58c7';
-const NUMBER_OF_STOPS = 2;
-const BUSES_PER_STOP = 5;
+const APP_KEY: string = 'e92dcffed66741b09040d3ff8bdc58c7';
+const NUMBER_OF_STOPS: number = 2;
+const BUSES_PER_STOP: number = 5;
 
 const getPostcodeData = async () => {
     const postcode = readlineSync.question('Enter postcode: ');
