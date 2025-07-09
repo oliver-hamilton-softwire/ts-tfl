@@ -6,7 +6,6 @@ const BUSES_PER_STOP = 5;
 
 const getPostcodeData = async () => {
     const postcode = readlineSync.question('Enter postcode: ');
-    // Get details about the postcode
     const postcodeResponse = await fetch(`https://api.postcodes.io/postcodes/${postcode}`);
     return await postcodeResponse.json();
 }
@@ -14,7 +13,6 @@ const getPostcodeData = async () => {
 const getNearestStops = async (lat: number, long: number) => {
     const stopsResponse = await fetch(`https://api.tfl.gov.uk/StopPoint/?lat=${lat}&lon=${long}&stopTypes=NaptanPublicBusCoachTram&app_key=${APP_KEY}`);
     const stopsJson = await stopsResponse.json();
-    // Get the top stops
     return stopsJson.stopPoints.slice(0, NUMBER_OF_STOPS);
 }
 
