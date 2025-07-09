@@ -34,7 +34,7 @@ const fetchData = async () => {
 
             for (const busJson of nextBuses.slice(0, BUSES_PER_STOP)) {
                 const busDate: Date = new Date(busJson.expectedArrival);
-                console.log(`Line ${busJson.lineId} towards ${busJson.towards} expected at ${busDate.toTimeString().slice(0,8)}`);
+                console.log(`Line ${busJson.lineId} to ${busJson.destinationName} expected at ${busDate.toTimeString().slice(0,8)}`);
             }
             console.log();
         }
